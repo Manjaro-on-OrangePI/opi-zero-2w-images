@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        DEVICE: [opi3-lts]
-        EDITION: [gnome,kde-plasma,mate,minimal,sway,xfce]
+        DEVICE: [opi-zero2w]
+        EDITION: [minimal]
         BRANCH: [stable]
     steps:
       -
         id: time
         uses: boredland/get-time-action@2.0.0
         with:
-          format: '23.MM'
+          format: 'YY.MM'
       -
         id: image-build
         uses: manjaro-arm/rootfs@master
@@ -28,6 +28,7 @@ jobs:
           edition: ${{ matrix.edition }}
           branch: ${{ matrix.branch }}
           version: ${{ steps.time.outputs.time }}
+          arm-profiles-repo: 'https://github.com/Manjaro-on-OrangePI/arm-profiles'
           #gpg-key: ${{ secrets.CI_GPG_SECRET }}
           #gpg-passphrase: ${{ secrets.CI_GPG_PASSPHRASE }}
       -
