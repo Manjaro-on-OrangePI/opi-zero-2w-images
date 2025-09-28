@@ -1,6 +1,5 @@
 name: image_build_all
-on:
-  workflow_dispatch:
+on: [push, pull_request]
 
 concurrency:
   group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
